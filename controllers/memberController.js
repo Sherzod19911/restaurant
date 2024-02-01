@@ -1,19 +1,7 @@
 let memberController = module.exports;
 const Member = require("../models/Member");
 
-// memberController.home = (req, res) => {
-//   console.log("GET cont.home");  
-//   res.send("home sahifadasiz");
-// };
-memberController.home = (req, res) => {
-  console.log("GET cont.home");      
-  res.send("home sahifadasiz");
-};
 
-// memberController.signup = (req, res) => {
-//   console.log("POST cont.signup");
-//   res.send("signup sahifadasiz");
-// };
 
 memberController.signup = async (req, res) => {
   try{
@@ -22,12 +10,7 @@ memberController.signup = async (req, res) => {
   //console.log(`body:::`,req.body);
   const member = new Member();
   //const new_member = await member.signupData(data);
-  
-
-  
-  
-
- new_member = await member.signupData(data);
+  new_member = await member.signupData(data);
 console.log("i am here1991");
 res.json({state: "succeed", data:new_member});
 //res.send("done");
@@ -57,9 +40,9 @@ memberController.login = async(req, res) => {
     console.log(`ERROR, cont/login, ${err.message}`);
     res.json({state: 'fail',message: err.message});
     }
+  }
 
 memberController.logout = (req, res) => {
   console.log("GET cont.logout");
   res.send("logout sahifadasiz");
-}
 }
