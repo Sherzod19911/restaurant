@@ -16,7 +16,7 @@ productController.addNewProduct = async(req,res) => {
     try {
         console.log("POST: cont/addNewProduct");
         console.log(req.member);
-        //res.send('ok');
+        res.send('ok');
         //TODO:product creation develop
 
 
