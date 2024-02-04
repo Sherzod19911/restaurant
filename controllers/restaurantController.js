@@ -69,7 +69,7 @@ restaurantController.loginProcess = async(req, res) => {
 
     });
     console.log(1991);
-   // res.json({state: 'succeed', data:result});
+    res.json({state: 'succeed', data:result});
     //res.send("done");
     } catch(err) {
     console.log(`ERROR, cont/login, ${err.message}`);
@@ -81,6 +81,18 @@ console.log("shrzod");
   console.log("GET cont.logout");
   res.send("logout sahifadasiz");
 };
+
+
+restaurantController.validateAuthRestaurant = (req, res, next) => {
+    if (req.session?.member?.mb_type === "RESTAURANT") {
+      req.member = req.session.member;
+      next();
+    } else
+     res.json({
+      state: "fail",
+       Error: "only authenticated memebers with restaurant type"
+      });
+  };
 restaurantController.checkSessions = (req,res) => {
     if (req.session?.member) {
       res.json({state: "succeed", data: req.session.member});
