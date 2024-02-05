@@ -4,6 +4,16 @@ const Product = require("../models/Product");
 
 let restaurantController = module.exports;
 
+restaurantController.home = (req, res) => {
+    try{
+      console.log("GET: cont/home");
+      res.render("home-page");
+    } catch (err) {
+      console.log(`ERROR, cont/home, ${err.message}`);
+      res.json({state: "fail", message: err.message});
+    }
+  };
+
 restaurantController.getMyRestaurantProducts = async (req, res) =>{
     try {
         console.log("GET: cont/getMyRestaurantProducts");
@@ -54,7 +64,7 @@ restaurantController.getLoginMyRestaurant = async (res, req) => {
         res.render('login-page');
     }catch (err) {
         console.log(`ERROR, cont/getSignupMyRestaurant, ${err.message}`);
-        res.json({state: 'fail',message: err.message});   
+        res.json({state: 'fail',message: err.message});  
     }
 }
 
@@ -64,15 +74,17 @@ restaurantController.loginProcess = async(req, res) => {
   try{
     console.log("POST:cont/login");
     const data = req.body, //requestni badiy qismidan malumot olamiz.
-    //console.log(`body:::`,req.body);
     member = new Member(),
     result= await member.loginData(data);
     req.session.member = result;
     req.session.save(function () {
-        res.redirect("/resto/products/menu");
+     //  res.redirect("/resto/products/menu");
 
     });
     console.log(1991);
+    console.log(`body:::`,req.body);
+
+    console.log("result:", result);
     res.json({state: 'succeed', data:result});
     //res.send("done");
     } catch(err) {

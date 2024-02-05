@@ -7,7 +7,7 @@ memberController.signup = async (req, res) => {
   try{
   console.log("POST:cont/signup");
   const data = req.body; //requestni badiy qismidan malumot olamiz.
-  //console.log(`body:::`,req.body);
+  console.log(`body:::`,req.body);
   const member = new Member();
   //const new_member = await member.signupData(data);
   new_member = await member.signupData(data);
@@ -32,8 +32,8 @@ memberController.login = async(req, res) => {
     const data = req.body, //requestni badiy qismidan malumot olamiz.
     //console.log(`body:::`,req.body);
     member = new Member(),
-    new_member =  await member.signupData(data);
-    console.log("new member:",new_member );
+    result =  await member.loginData(data);
+   //console.log("new member:",new_member );
     res.json({state: 'succeed', data:result});
     //res.send("done");
     } catch(err) {
