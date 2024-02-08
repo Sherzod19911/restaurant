@@ -46,7 +46,7 @@ productController.addNewProduct = async(req,res) => {
 productController.updateChosenProduct = async(req,res) => {
     try {
         console.log('POST: cont/upateChosenProduct');
-        const product = new Product();
+        const product = new Product();     
         const id = req.params.id;
         const result = await product.updateChosenProductData(
             id,

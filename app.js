@@ -5,7 +5,7 @@ const router = require("./router.js");
 const router_bssr = require("./router_bssr.js");
 
 
-// MongoDB choqirish
+// MongoDB choqirish    
 const db = require("./server");
 const mongodb = require("mongodb");
 let session =  require("express-session");
