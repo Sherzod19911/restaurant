@@ -70,7 +70,7 @@ res.json({state: 'fail',message: err.message});
 restaurantController.getLoginMyRestaurant = async (req, res) => {
     try {
         console.log("GET:cont/getLoginMyRestaurant");
-        res.render('restaurant-menu.ejs');
+        res.render("login-page");
     } catch (err) {
         console.log(`ERROR, cont/getSignupMyRestaurant, ${err.message}`);
         res.json({ state: 'fail', message: err.message });  
@@ -88,13 +88,15 @@ restaurantController.loginProcess = async(req, res) => {
     result= await member.loginData(data);
     req.session.member = result;
     req.session.save(function () {
-      res.redirect("/resto/products/menu");
+      result.mb_type ==="Admin"
+      ?  res.redirect("/resto/all-restaurant")
+      :  res.redirect("/resto/products/menu");
 
     });
-    console.log(1991);
-    console.log(`body:::`,req.body);
+    // console.log(1991);
+    // console.log(`body:::`,req.body);
 
-    console.log("result:", result);
+    // console.log("result:", result);
     res.json({state: 'succeed', data:result});
     //res.send("done");
     } catch(err) {
@@ -102,7 +104,7 @@ restaurantController.loginProcess = async(req, res) => {
     res.json({state: 'fail',message: err.message});
     }
 };
-console.log("shrzod");
+
  restaurantController.logout = (req, res) => {
   console.log("GET cont.logout");
   res.send("logout sahifadasiz");

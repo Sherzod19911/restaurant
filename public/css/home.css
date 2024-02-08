@@ -1,4 +1,4 @@
-.body{ 
+body{ 
   display: flex;
   justify-content: center;
   align-items: start;
@@ -18,16 +18,16 @@
 }
 
 .animation-wrapper {
-  width: 40%;
-  padding-bottom: 30%;
+  width: 50%;
+  padding-bottom: 50%;
 }
 
 .sphere-animation {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 380px;
-  height: 380px;
+  width: 580px;
+  height: 580px;
   margin: -290px 0 0 -290px;
 }
 
