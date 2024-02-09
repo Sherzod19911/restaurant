@@ -1,5 +1,8 @@
 const Member = require("../models/Member");
 const Product = require("../models/Product");
+const Definer = require("../lib/mistake");
+const assert = require("assert");
+
 
 
 let restaurantController = module.exports;
@@ -26,27 +29,33 @@ restaurantController.getMyRestaurantProducts = async (req, res) =>{
   }
 }
 
-restaurantController.getSignupMyRestaurant = async (res, req) => {
-    try {
-        console.log("GET:cont/getSignupMyRestaurant");
-        res.render('signup');
-    }catch (err) {
-        console.log(`ERROR, cont/getSignupMyRestaurant, ${err.message}`);
-        res.json({state: 'fail',message: err.message});   
-    }
+restaurantController.getSignupMyRestaurant = async (req, res) => {
+  try {
+      console.log("GET:cont/getSignupMyRestaurant");
+      res.render("signup");
+  } catch (err) {
+      console.log(`ERROR, cont/getSignupMyRestaurant, ${err.message}`);
+      res.json({state: 'fail', message: err.message});   
+  }
 }
+
 
 restaurantController.signupProcess = async (req, res) => {
 try{
 console.log("POST:cont/signup");
-const data = req.body, //requestni body qismidan malumot olamiz.
+console.log("req.file:::",req.file);
+assert.ok(req.file, Definer.general_err3);
+console.log("req.file:::",req.file);
 
-member = new Member(),
 
+    let new_member = req.body;
+    new_member.mb_type = "RESTAURANT";
+    new_member.mb_image = req.file.path;
 
-
- new_member =  await member.signupData(data);
- req.session.member = new_member;
+    const member = new Member();
+    const result = await member.signupData(new_member);
+    assert.ok(result, Definer.general_err1);
+req.session.member = result;
  res.redirect("/resto/products/menu");
 
 
@@ -89,7 +98,7 @@ restaurantController.loginProcess = async(req, res) => {
     req.session.member = result;
     req.session.save(function () {
       result.mb_type ==="Admin"
-      ?  res.redirect("/resto/all-restaurant")
+      ?  res.redirect("/resto/all-products")
       :  res.redirect("/resto/products/menu");
 
     });
@@ -106,8 +115,15 @@ restaurantController.loginProcess = async(req, res) => {
 };
 
  restaurantController.logout = (req, res) => {
-  console.log("GET cont.logout");
-  res.send("logout sahifadasiz");
+  try{
+    console.log("GET cont/logout");
+    req.session.destroy(function () {
+      res.redirect("/resto");
+    });
+  } catch(err) {
+    console.log(`ERROR, cont/logout, ${err.message}`);
+    res.json({ state: "fail", message: err.message});
+  }
 };
 
 

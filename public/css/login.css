@@ -135,4 +135,150 @@ body, html{
     line-height: 33px;
     letter-spacing: -0.02rem;
     color: #fff;
+
+
+}
+
+/* SIGN -UP */
+
+.sign_input_frame {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sign_up_frame {
+  position: relative;
+  margin-top: 15px;
+  width: 49%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sign_up_frame  label {
+  font-family: "Poppins",  serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.sign_up_frame input {
+  position: relative;
+  margin-top: 10px;
+  padding-left: 20px;
+  width: 100%;
+  height: 55px;
+  background: #f6f5f5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.media-frame {
+  position: relative;
+  margin-top: 15px;
+  width: 100%;
+  height: 250px;
+
+  display: flex;
+  flex: row;
+  justify-content: space-between;
+}
+
+.media_frame {
+  position: relative;
+  width: 275px;
+  height: 93%;
+}
+
+
+.upload_img_frame {
+  position: relative;
+  display: block;
+  width: 275px;
+  height: 93%;
+  display: flex;
+  border-radius: 15px;
+  margin: 5px;
+  padding: 10px;
+}
+
+.media_frame .upload_container {
+  position: relative;
+  margin-left: 30px;
+  width: 75px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.media_text {
+  font-family: "DT Walsheim Pro";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  color: #140342;
+  padding-left: 10px;
+}
+
+.filebox {
+  display: flex;
+  width: 300px;
+  margin-top: 15px;
+}
+
+.filebox input[type="file"] {
+  position: relative;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.filebox label {
+  width: 140px;
+  height: 55px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #6A7A99;
+  border-radius: 0px 8px 8px 0px;
+
+  font-family: "DT Walsheim Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 26px;
+  color: #fff;
+}
+
+.filebox .upload-name {
+  position: relative;
+  padding: 20px;
+  width: 85%;
+  height: 55px;
+
+  display: flex;
+  background-color: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 8px 0px 0px 8px;
+}
+
+.thumbnail_desc {
+  margin-top: 25px;
+  font-family: "GT Walshein Pro";
+  font-stretch: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 26px;
+  color: #7472ce;
   }
+

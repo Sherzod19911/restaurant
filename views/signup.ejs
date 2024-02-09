@@ -1,7 +1,130 @@
 <%-include('includes/header') %>
 
 <body>
-<h1>Signup page</h1>
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <body>
+      <form
+      onsubmit="return validateSignUpForm ()"
+
+      class="login_container"
+      action="/resto/sign-up"
+      method="POST"
+      enctype="multipart/form-data">
+    
+        <div class="login_frame" style="width: 650px; height: 730px;">
+    
+          <div class="login_top">
+            <span>Sign Up</span>
+            <div>
+              Back to Main Page <a href="/resto" style="color: #6440fb">Home</a>
+            </div>
+            <p>Already a member? <a href="/resto/login" style="color: #6440fb">Sign In</a></p>
+          </div>
+    
+          <div class="sign_input_frame">
+            <div class="sign_up_frame">
+              <label>User ID</label>
+              <input type="text" name="mb_nick" class="mb_nick" placeholder="User ID" value="" required>
+            </div>
+    
+            <div class="sign_up_frame">
+              <label>Phone number</label>
+              <input type="text" name="mb_phone"   class="mb_phone"  placeholder="Phone number" value="" required>
+
+            </div>
+          </div>
+    
+          <!-- PASSWORD SECTION -->
+          <div class="sign_input_frame">
+            <div class="sign_up_frame">
+              <label>Password</label>
+              <input type="password" name="mb_password" placeholder="Password" value="" required>
+            </div>
+    
+            <div class="sign_up_frame">
+              <label>Confirm your password</label>
+              <input type="password" name="mb_confirm_password" placeholder="Confirm your password" value="" required>
+
+            </div>
+          </div>
+    
+          <div class="login_input_frame">
+            <div class="media-frame">
+              <img class="upload_img_frame" src="/views/images/shashlik.jpg" alt="resto_img_required">
+              <div class="upload_container">
+                <span class="media_text">Food image</span>
+                <div class="filebox bs3-primary preview-images">
+                  <input class="upload-name" value="Rasmni tanlang" disabled="disabled">
+                  <label for="input_file">Upload image</label>
+                  <input
+                  id="input_file"
+                  
+                  <input
+                  class="upload-hiddin form-control-file restaurant_img"
+                  type="file"
+                  name="restaurant_img"
+                  placeholder=""
+                  id="input_file"
+                  required>
+                </div>
+    
+                <p class="thumbnail_desc">Please upload your Restaurant image.
+                  <br>Note: Please upload required img format(jpg,jpeg or png) <br> Image doesn't cointain text!
+                </p>
+              </div>
+            </div>
+          </div>
+    
+          <!-- RO"YHATDAN O"TISH BUTTON -->
+          <button class="login_btn btn" name="signup" type="submit">Sign Up</button>
+    
+        </div>
+      </form>
 </body>
+
+<script>
+  $(function () {
+    let fileTarget = $(".filebox .upload-hiddin");
+    let filename = "";
+    fileTarget.on("change", function () {
+      if (window.FileReader) {
+        const uploading_file = $(this)[0].files[0];
+        const fileType = uploading_file["type"];
+        const validImageTypes = ["image/jpg", "image/jpeg", "image/png"];
+        if (!validImageTypes.includes(fileType)) {
+          alert ("Please upload required img file: jpg, jpeg va png!");
+        } else {
+          if (uploading_file) {
+            console.log(URL.createObjectURL(uploading_file));
+            $(".upload_img_frame")
+            .attr("src", URL.createObjectURL(uploading_file))
+            .addClass("success");
+          }
+          filename = uploading_file.name;
+        }
+      }
+      $(this).siblings(".upload-name").val(filename);
+    });
+  });
+  function validateSignUpForm() {
+    const mb_nick = $(".mb_nick").val();
+    const mb_phone = $(".mb_phone").val();
+    const mb_password = $(".mb_password").val();
+    const mb_confirm_password = $(".mb_confirm_password").val();
+    const restaurant_img = $(".restaurant_img").get(0).files[0] ?? null;
+    if (mb_nick == "" || mb_phone == "" || mb_password == "" || mb_confirm_password == "" ) {
+      alert("Please complete all the fields");
+      return false;
+    } else if (mb_password !== mb_confirm_password) {
+      alert(`Please enter password correctly`);
+      return false;
+    }
+    if (!restaurant_img) {
+      alert("Please upload image");
+      return false;
+    }
+    return true;
+  }
+</script>
 
 <%-include('includes/footer') %>
