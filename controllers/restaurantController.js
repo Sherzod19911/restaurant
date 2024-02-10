@@ -42,10 +42,11 @@ restaurantController.getSignupMyRestaurant = async (req, res) => {
 
 restaurantController.signupProcess = async (req, res) => {
 try{
-console.log("POST:cont/signup");
+console.log("POST:cont/signupProcess");
+
 console.log("req.file:::",req.file);
 assert.ok(req.file, Definer.general_err3);
-console.log("req.file:::",req.file);
+console.log("req.file:::",req.file);    
 
 
     let new_member = req.body;
@@ -59,7 +60,7 @@ req.session.member = result;
  res.redirect("/resto/products/menu");
 
 
-console.log("new member:",new_member );
+//console.log("new member:",new_member );
 //res.json({state: "succeed", data:new_member});
 //res.send("done");
 } catch(err) {

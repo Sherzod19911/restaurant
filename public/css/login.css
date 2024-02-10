@@ -157,6 +157,7 @@ body, html{
   height: auto;
   display: flex;
   flex-direction: column;
+  
 }
 
 .sign_up_frame  label {
@@ -188,17 +189,17 @@ body, html{
   flex: row;
   justify-content: space-between;
 }
-
+/* 
 .media_frame {
   position: relative;
   width: 275px;
   height: 93%;
-}
+} */
 
 
 .upload_img_frame {
   position: relative;
-  display: block;
+  display: flex;
   width: 275px;
   height: 93%;
   display: flex;

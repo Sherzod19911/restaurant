@@ -7,7 +7,7 @@ const {
 } = require("../lib/config");
 const Schema = mongoose.Schema;
 
-productSchema = new mongoose.Schema({
+productSchema = new mongoose.Schema({      
   product_name: {type: String, required: true},
   product_collection: {
     type: String,
