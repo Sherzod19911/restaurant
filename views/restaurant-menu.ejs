@@ -63,6 +63,7 @@
         <form onsubmit="return validateForm()" class="dish_container"
         action="/resto/products/create"
         method="POST"
+
         enctype="multipart/form-data">
         <div class="long_input" style="display: flex; align-items: center;">
           <span class="new_dish_text">New Food</span>
@@ -206,6 +207,25 @@
         alert(`Please fill all input!`);
         return false;
       } else return true;
+    }
+
+    function previewFileHandler(input, order) {
+      // console.log(input);
+      const image_class_name = input.className;
+      const file = $(`.${image_class_name}`).get(0).files[0],
+      fileType = file['type'],
+      validImageTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+      if(!validImageTypes.includes(fileType)) {
+        alert(`Please upload permitted img file: jpg, jpeg, png`);
+      } else {
+        if(file) {
+          let reader = new FileReader();
+          reader.onload = function() {
+            $(`#image_section_${order}`).attr("src", reader.result);
+          }
+          reader.readAsDataURL(file);
+        }
+      }
     }
   </script>
 </body>   
