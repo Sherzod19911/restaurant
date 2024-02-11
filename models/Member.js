@@ -36,21 +36,65 @@ class Member {
         try{
          const member = await this.memberModel
          .findOne(
-          {mb_nick: input.mb_nick},         
+          {mb_nick: input.mb_nick}, 
+          {mb_nick:1,mb_password: 1}
           )
          .exec();
-         assert.ok(member,Definer.auth_err3);
-         console.log(member);
-         const isMatch = await bcrypt.compare(input.mb_password, member.mb_password);
+         assert.ok(member,Definer.auth_err1);
+         //console.log(member);
+          const isMatch = await bcrypt.compare(input.mb_password, member.mb_password);
           assert.ok(isMatch,Definer.auth_err4);
           return await this.memberModel.findOne({
             mb_nick:input.mb_nick
           })
           .exec();
-        } catch(err) {
-          throw err;
+
+      //  async loginData(input) {
+      //   try {
+      //       console.log("Input received:", input); // Log the input data
+            
+      //       const member = await this.memberModel.findOne(
+      //         { mb_nick: input.mb_nick }
+
+      //         )
+      //       .exec();
+      //       console.log("Retrieved member:", member); // Log the retrieved member
+            
+          //   assert.ok(member, Definer.auth_err3);
+          //   const isMatch = await bcrypt.compare(input.mb_password, member.mb_password);
+
+    
+          //  // const isMatch = await bcrypt.compare(input.mb_password, member.mb_password);
+          //   console.log("Password comparison result:", isMatch); // Log the result of password comparison
+            
+          //   assert.ok(isMatch, Definer.auth_err4);
+    
+            //return member; // Return the member document
+        } catch (err) {
+            console.error("Error in loginData:", err); // Log any errors
+            throw err;
         }
-       }
+    }
+    
+      //  async loginData(input) {
+      //   try{
+      //    const member = await this.memberModel
+      //    .findOne(
+      //     {mb_nick: input.mb_nick},         
+      //     )
+      //    .exec();
+      //    assert.ok(member,Definer.auth_err3);
+      //    console.log(member);
+      //    const isMatch = await bcrypt.compare(input.mb_password, member.mb_password);
+      //     assert.ok(isMatch,Definer.auth_err4);
+      //     return await this.memberModel.findOne({
+      //       mb_nick:input.mb_nick
+      //     })
+      //     .exec();
+      //   } catch(err) {
+      //     throw err;
+      //   }
+      //  }
   }
   
   module.exports = Member;
