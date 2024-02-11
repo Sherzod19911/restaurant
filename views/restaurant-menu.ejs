@@ -161,7 +161,7 @@
               onchange="previewFileHandler(this, 5)">
             </div>
 
-            <!-- <input value="<%= member._id %>" name="restaurant_id" class="restaurant_id" hidden> -->
+            <input value="<%= member._id %>" name="restaurant_id" class="restaurant_id" hidden>
           </div>
         </div>
 
@@ -193,6 +193,20 @@
         $(".hiding_btn").css("display", "none");
       })
     });
+
+    function validateForm() {
+      const restaurant_mb_id = $(".restaurant_mb_id").val(),
+      product_name = $(".product_name").val(),
+      product_price = $(".product_price").val(),
+      product_left_cnt= $(".product_left_cnt").val(),
+      product_collection = $(".product_collection").val(),
+      product_description = $(".product_description").val(),
+      product_status = $(".product_status").val();
+      if(restaurant_mb_id == '' || product_name == '' || product_price == '' || product_left_cnt == '' || product_collection == '' || product_description == '' || product_status == '' ) {
+        alert(`Please fill all input!`);
+        return false;
+      } else return true;
+    }
   </script>
 </body>   
 
